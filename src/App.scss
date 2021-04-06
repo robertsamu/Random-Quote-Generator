@@ -1,0 +1,181 @@
+$main-fonts: Arial, sans-seiff;
+$main-color: #f0f0f0;
+$body-highlight: #fff;
+$body-shadow: #dcdadd;
+$accent-color: #444cf7;
+
+@mixin newmorphicbox($x, $y, $z, $shadow, $highlight, $border-radius){
+    border-radius: $border-radius;
+    background-color: $main-color;
+    box-shadow: $x $y $z $shadow,
+    (-$x) (-$y) ($z) $highlight;
+}
+
+@mixin accent(){
+    position: absolute;
+    transform: translate(-50%, -50%);
+    max-width: 400px;
+    max-height: 400px;
+    opacity: 0.6;
+    z-index: -1;
+    filter: blur(80px);
+}
+
+body{
+    background-color: $main-color;
+    font-family: $main-fonts;
+    background-color: $main-color;
+    background-size: 21px 21px;
+
+}
+
+p {
+    font-size: 30px;
+    text-align: center;
+}
+
+h1{
+    margin-bottom: 50px;
+    font-size: 60px;
+    padding: 20px;
+    text-align: center;
+}
+
+#author{
+    text-align: right;
+    padding-right: 10px;
+}
+
+#quote-box{
+    max-width: 800px;
+    max-height: auto;
+    padding: 40px;
+    margin-bottom: 100px;
+    border-radius: 30px;
+    border: 2px solid rgb(235, 236, 236);
+    background-color: rgba(247, 247, 247, 0.616) !important;
+}
+
+#buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.accent-1{
+    @include accent();
+    top: 50%;
+    left: 68%;
+    min-width: 400px;
+    min-height: 400px;
+    background: radial-gradient(circle at 50% 50%, rgb(148, 9, 241), rgba(76, 0, 255, 0));
+}
+
+.accent-2{
+    @include accent();
+    top: 68%;
+    left: 40%;
+    min-width: 300px;
+    min-height: 300px;
+    background: radial-gradient(circle at 50% 50%, rgb(241, 167, 9), rgba(76, 0, 255, 0));
+}
+
+button{
+   
+    padding: 10px;
+    font-size: 18px;
+    border-style: none;
+    @include newmorphicbox(9px, 9px, 18px, #afadb2d0, rgba(255, 255, 255, 0.836), 6px);
+}
+
+#tweet-quote{
+    color: #1dbaee;
+
+}
+
+.App{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.glow-on-hover {
+    width: 120px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: rgb(37, 37, 37);
+    background: rgb(247, 247, 247);
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: rgb(241, 240, 240)
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: $main-color;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+.fa {
+    
+    padding: 10px;
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    margin-left: 20px;
+    text-decoration: none;
+    border-radius: 50%;
+    border-style: none;
+    @include newmorphicbox(9px, 9px, 18px, #afadb2d0, rgba(255, 255, 255, 0.836), 6px);
+    transition: color .8s;
+    
+  }
+.fa:hover{
+    color:$accent-color  !important;
+}
